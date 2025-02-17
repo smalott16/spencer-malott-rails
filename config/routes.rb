@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -26,5 +28,7 @@ Rails.application.routes.draw do
   delete "/blogs/:id", to: "blogs#destroy"
 
   # you can replace all of the above lines with:
-  # resources blogs
+  namespace :api do
+    resources :blogs
+  end
 end
